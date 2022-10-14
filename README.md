@@ -1,7 +1,7 @@
-# Personal Hackintosh Guide/Instructions for Dell 7567
+# [UPDATE]Personal Hackintosh Guide/Instructions for Dell 7567
 
 ### Screenshot
-![macOS Big Sur - 11.0.1](./tools/ScreenShot.png)
+![macOS Monterey - 12.6](./tools/ScreenShot.png)
 
 ### Download Required Files
 Check [releases](https://github.com/maxis7567/Hackintosh-Dell-7567-OpenCore_Big-Sur/releases/tag/1.0.0)
@@ -13,24 +13,26 @@ Check [releases](https://github.com/maxis7567/Hackintosh-Dell-7567-OpenCore_Big-
 
 ### Known Bugs
  - 2.1 audio (2.0 works)
- - Bluetooth not working with some devices (in my case my wireless mi mouse not working)
-
+ 
+### Working
+ - 2.1 Audio(download [eqmac](https://eqmac.app) to enable subwoofer)
+ - Bluetooth On and Off
+ 
 ### Specs
  - Intel i7-7700HQ CPU
  - Intel HD Graphics 630 / nVidia GTX 1050 Ti
  - 16GB 2400MHz DDR4 RAM
- - 15.6” 1080p IPS Display
- - 500GB Samsung 970 Evo Plus SSD (Nvme)
+ - 15.6” 1080p TN Display
+ - 240 Samsung 970 Evo Plus SSD (Nvme)
  - 1TB 5400RPM Toshiba HDD
 
 ### Prerequisites
  - Set BIOS options properly:
-   - Disable Legacy Option ROMs
-   - Change SATA operation to AHCI (If already using windows, google how to)
+   - Change SATA operation to AHCI (If already using windows, you'll need to change from RAID to AHCI)
    - Disable Secure Boot
    - Disable SGX
 
-## Creating macOS USB With MacOS (you can create usb installer in windows just google it)
+## Creating macOS USB With MacOS (if other, create a virtual machine to emulate macOS and continue)
 
 - Download MacOs Big Sur from app store and run this code in terminal
 
@@ -42,14 +44,14 @@ diskutil list
 diskutil partitionDisk /dev/diskX 1 GPT HFS+J "install_osx" R
 
 # Copy installer imge 
-sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/install_osx
+sudo /Applications/Install\ macOS\ Monterey.app/Contents/Resources/createinstallmedia --volume /Volumes/install_osx
 
 # Rename 
-sudo diskutil rename "Install macOS Big Sur" install_osx
+sudo diskutil rename "Install macOS Monterey" install_osx
 ```
-- Download [Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/)
+- Download [ESP mounter pro]([https://mackie100projects.altervista.org/download-clover-configurator/](https://www.olarila.com/topic/4975-esp-mounter-pro-v19/))
 - Use the app to mount USB EFI partition
-- Copy EFI from repo USB Efi partition
+- Copy EFI from repo USB to Efi partition
 
 
 ## Booting USB and Installing macOS
@@ -63,7 +65,7 @@ sudo diskutil rename "Install macOS Big Sur" install_osx
 
 ## Post Installation
 
-- Use Clover Configurator to mount APFS EFI partition
+- Use [ESP mounter pro] to mount APFS EFI partition
 - Copy EFI from repo USB EFI partition
 
 
@@ -90,8 +92,10 @@ sudo pmset -a powernap 0
 **Scrolling is choppy with third party mice**
  - Use this tool: https://mos.caldis.me/, works well
  - Scroll direction can also be set via this tool
-
+**Eqmac configs for 2.1**
+![Eqmac](./tools/eqmac.png)
 
 ## Credits
- - [Lersy](https://github.com/lersy) and [Me](https://www.github.com/maxis7567/) *(For putting this together & adding many required patches)*
+ - [Lersy](https://github.com/lersy), [maxis7567](https://www.github.com/maxis7567/) *(For putting this together & adding many required patches)*
+ - [Me](https://github.com/LuizCamargos/)
 
