@@ -1,4 +1,5 @@
 # [UPDATE]Personal Hackintosh Guide/Instructions for Dell 7567
+THIS ISN'T READY TO USE OK
 
 ### Screenshot
 ![macOS Monterey - 12.6](./tools/ScreenShot.png)
